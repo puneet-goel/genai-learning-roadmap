@@ -165,7 +165,7 @@ Repo - https://github.com/puneet-goel/genai/tree/main/basic%20interaction%20with
 
 #### Videos
 
-1. https://youtu.be/K45s2PgywvI
+1. https://www.youtube.com/watch?v=e9U0QAFbfLI
 2. https://youtu.be/JsGwjwnl4hY
 
 ---
