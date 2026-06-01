@@ -134,9 +134,10 @@ Repo - https://github.com/puneet-goel/genai/tree/main/basic%20interaction%20with
 14. Can embeddings be stored in SQL or NoSQL databases?
 15. Why do vector databases exist?
 16. Why can't we simply store them in normal sql no-sql dbs? If yes, how to handle similarity search? What special purpose do these vectors DBs provide?
-17. How is similarity search implemented?
-18. What is cosine similarity?
-19. What is reranking? Why retrieve 20 documents and only send 5 to the LLM?
+17. How to fetch top k results? (similar)
+18. How is similarity search implemented?
+19. What is cosine similarity?
+20. What is reranking? Why retrieve 20 documents and only send 5 to the LLM?
 21. How to handle multi-source data ingestion in RAG.
 
 ### Technologies
@@ -159,6 +160,11 @@ Repo - https://github.com/puneet-goel/genai/tree/main/basic%20interaction%20with
 #### Persistent Vector Storage
 
 [rag/persistent-storage-chroma](https://github.com/puneet-goel/genai/tree/main/rag/persistent-storage-chroma)
+
+#### Videos
+
+1. https://youtu.be/K45s2PgywvI
+2. https://youtu.be/JsGwjwnl4hY
 
 ---
 
@@ -185,8 +191,7 @@ Repo - https://github.com/puneet-goel/genai/tree/main/basic%20interaction%20with
 17. Short-term memory vs Long-term memory
 18. How should human approvals be handled? Should we restart the workflow or resume from the same point? How to handle resumption?
 19. Should workflows restart or resume?
-20. How does memory work?
-21. What is LangSmith used for?
+20. What is LangSmith used for?
 
 ### Resources
 
