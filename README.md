@@ -87,16 +87,17 @@ The goal is simple: if you're learning GenAI and don't know what to learn next, 
 1. What is Agentic AI?
 2. What are AI Agents?
 3. Difference between LLMs, AI Agents, and Agentic AI?
-4. What are reactive agents?
-5. What are planning agents?
-6. What are agent swarms?
-7. What are examples of Agentic AI systems?
-8. What are the trade-offs of fully autonomous agents?
-9. Agent reliability vs level of autonomy for fully autonomous agent and scripted workflows. (There is one graph for same).
+4. What is the difference between a workflow and an agent?
+5. What are reactive agents?
+6. What are planning agents?
+7. What are agent swarms?
+8. What are examples of Agentic AI systems?
+9. What are the trade-offs of fully autonomous agents?
+10. Agent reliability vs level of autonomy for fully autonomous agents and scripted workflows.
 
 <img width="1150" height="766" alt="image" src="https://github.com/user-attachments/assets/4467bea9-271e-4bef-b777-2d4f41f41274" />
 
-10. Since an LLM only generates tool calls and does not execute tools itself, what distinguishes a simple tool-calling application from an agent that repeatedly executes tool calls, feeds the results back to the LLM, and lets the model decide the next action until a final answer is reached?
+11. Since an LLM only generates tool calls and does not execute tools itself, what distinguishes a simple tool-calling application from an agent that repeatedly executes tool calls, feeds the results back to the LLM, and lets the model decide the next action until a final answer is reached?
 
 ### Examples
 
@@ -121,25 +122,25 @@ Repo - https://github.com/puneet-goel/genai/tree/main/basic%20interaction%20with
 
 1. What is RAG?
 2. What does a RAG pipeline look like?
-3. What is a data ingestion pipeline? - data load, chunking, embedding, storage
-4. What is a retrieval pipeline? - retrieval on query basis, augmentation, generation
+3. What is a data ingestion pipeline? - data loading, chunking, embedding, storage
+4. What is a retrieval pipeline? - retrieval based on query, augmentation, generation
 5. What are common problems in RAG systems? - bad chunking, correct model usage, data cleaning before embedding, retrieval strategy
 6. What is semantic search?
 7. How is semantic search different from lexical search?
-8. How can we relate RAG with semantic search?
-9. Can we use a hybrid approach where both semantic and keyword based search is involved?
+8. How can we relate RAG to semantic search?
+9. Can we use a hybrid approach where both semantic and keyword-based search is involved?
 10. What are vectors?
 11. What is vectorization?
-12. What are vector embeddings?
+12. What are embeddings?
 13. How are embeddings stored?
 14. Can embeddings be stored in SQL or NoSQL databases?
 15. Why do vector databases exist?
-16. Why can't we simply store them in normal sql no-sql dbs? If yes, how to handle similarity search? What special purpose do these vectors DBs provide?
-17. How to fetch top k results? (similar)
+16. Why can't we simply store them in normal SQL or NoSQL dbs? If yes, how to handle similarity search? What special purpose do these vectors DBs provide?
+17. How are the top-k most similar results retrieved?
 18. How is similarity search implemented?
-19. What is cosine similarity?
+19. What are Euclidean distance and dot-product similarity, and how do they compare with cosine similarity?
 20. What is reranking? Why retrieve 20 documents and only send 5 to the LLM?
-21. How to handle multi-source data ingestion in RAG.
+21. How do we handle multi-source data ingestion in RAG.
 
 ### Technologies
 
@@ -174,25 +175,26 @@ Repo - https://github.com/puneet-goel/genai/tree/main/basic%20interaction%20with
 ### Questions
 
 1. What is LangChain?
-2. Is LangChain a framework or library?
+2. Is LangChain a framework or a library?
 3. What problem does LangChain solve? How does it fit into AI development?
 4. Various components - document loaders, retrievers, embeddings, text-splitters
 5. What is LangGraph?
-6. How is LangGraph different from LangChain? What problem does it solves?
+6. How is LangGraph different from LangChain? What problem does it solve?
 7. What are workflows?
 8. Static vs Dynamic Workflows?
 9. Autonomous Agents vs Workflows?
-10. What is orchestration? How LangGraph is used here?
+10. What is orchestration? How is LangGraph used for orchestration?
 11. What are self-correcting workflows?
 12. How does state management work?
 13. How do routing and conditional routing work?
-14. Multi-Agentic systems using LangGraph.
+14. Multi-agent systems using LangGraph.
 15. Structure of LangGraph - nodes, edges, conditional edges
 16. What are interrupts?
 17. Short-term memory vs Long-term memory
 18. How should human approvals be handled? Should we restart the workflow or resume from the same point? How to handle resumption?
 19. Should workflows restart or resume?
 20. What is LangSmith used for?
+21. What is ReAct?
 
 ### Resources
 
@@ -212,18 +214,29 @@ Repo - https://github.com/puneet-goel/genai/tree/main/basic%20interaction%20with
 ### Questions
 
 1. What is MCP?
-2. What is the difference between MCP server, client and host?
-3. Can we think of MCP like an adapter pattern for AI apps? (Tools and host application)
-4. How communication is done between MCP server and client - transport
-5. How does MCP, agents, RAG, Tools, and LLMs fit together in one architecture?
-6. How communication is done between server and client? Standard input output communication? What are the other ways?
+2. What is the difference between an MCP server, client and host?
+3. Can we think of MCP as an adapter pattern for AI applications? (Tools and host application)
+4. How is communication done between an MCP server and client? What transport mechanisms does MCP support?
+5. How does MCP, agents, RAG, Tools, and LLMs fit together in a single architecture?
+6. How communication is performed between server and client? Standard input output communication? What are the other ways?
 7. Why is there a requirement for MCP client if we could directly connect server and host? What purpose does the client offer? - handles communication layer and like that
 8. What is the difference when MCP client connects to the remote server vs local server? (Process to process vs client-server communication)
-9. Local server connection - does it create a new process(MCP server) for each MCP client? Can we say its client-agnostic? How to handle shared states between the multiple clients if required? Does each server need to be stateless? Concurrency issues with shared states?
-10. Remote server connection - is there one server for all clients? How is communication done? How it differs from local server connection? (Studio vs http/grpc, process communication vs client-server communication)? How to handle shared state or, should the server be stateless? Concurrency issues with shared state? What are the limitations when compared to local server connection - network latency I/O?
-11. Zod library for input/output tools
+9. Local MCP Server Architecture
+
+  - Does each MCP client spawn its own MCP server process, or can multiple clients share the same server process?
+  - How should shared state be handled across clients?
+  - Should MCP servers be stateless, and what concurrency challenges arise when maintaining shared state?
+
+10. Remote MCP Server Architecture
+
+  - Do multiple MCP clients typically connect to a shared MCP server instance?
+  - How does this differ from a local MCP server in terms of communication mechanisms (stdio vs. HTTP/gRPC), state management, concurrency, scalability, and performance considerations such as network latency and I/O overhead?
+  - How should shared state be handled, or should the server be stateless?
+  - What concurrency issues can arise with shared state?
+
+11. What is the Zod library, and how is it used for MCP tool input/output schema validation?
 12. What is MCP handshake?
-13. Structure of MCP messages over console?
+13. What is the structure of MCP messages over stdio?
 14. Can we create a project using MCP without LLMs? Yes. In that case, the host needs to decide which tool to call instead of asking an LLM. MCP is just a protocol.
 
 ### Project
@@ -282,18 +295,18 @@ This section contains some of the most interesting questions I encountered while
 
 1. Can we generate a complete execution plan in the first LLM call (including the sequence of tools to invoke) and then execute those tools programmatically without repeatedly calling the LLM?
 2. What are the trade-offs between upfront planning and iterative agent loops in terms of token usage and reliability?
-3. What if some tools are dependent on the output of the previous tool calls?
+3. What if some tools depend on the output of the previous tool calls?
 4. Can we use a hybrid approach?
 5. What happens if planning is done on some parameters and those parameters are changed midway through execution or some human is involved in the workflow, by the time the workflow is approved, environmental parameters may have changed?
 
 ### 10.2 MCP and Agent Definitions
 
-1. If an application uses MCP to expose a single tool, and the LLM only performs one tool call without any reasoning or decision loop, should it be considered an agent, or is it simply a tool-calling application?
+1. If an application uses MCP to expose a single tool, and the LLM performs only one tool call without any reasoning or decision loop, should it be considered an agent, or is it simply a tool-calling application?
 2. What differentiates an agent from a tool-calling application?
 
 ### 10.3 Polyglot Multi-Agent Architectures
 
-1. How should communication be designed in a polyglot multi-agent system where agents are implemented in different languages or frameworks?
+1. How should communication be designed in a polyglot multi-agent system where agents are implemented using different languages or frameworks?
 2. Should agents communicate directly, through an orchestrator, via message queues, or through standardized protocols such as A2A?
 4. What communication patterns work best?
 
@@ -303,11 +316,11 @@ When should we use predefined (static) workflows versus dynamically generated wo
 
 ### 10.5 State Persistence
 
-1. How to persist agent states in workflows?
+1. How should agent state be persisted in workflows?
 2. How should crashes be handled?
 3. How should deployments affect running workflows?
 4. How should human approvals be handled?
-5. What to persist? Should we persist everything or limited to the functional requirements?
+5. What should be persisted? Should we persist everything or limited to the functional requirements?
 
 ---
 
